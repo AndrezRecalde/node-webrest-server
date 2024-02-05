@@ -16,7 +16,7 @@ export class Server {
 
 
     constructor(options: Options){
-        const { port, public_path } = options;
+        const { port, public_path = 'public' } = options;
         this.port = port;
         this.public_path = public_path;
     }
@@ -30,7 +30,7 @@ export class Server {
         this.app.use(express.static(this.public_path));
 
         this.app.get('*', (req,res) => {
-            const indexPath = path.join(__dirname + `../../${this.public_path}/index.html`);
+            const indexPath = path.join(__dirname + `../../../${this.public_path}/index.html`);
             res.sendFile(indexPath);
         })
 
